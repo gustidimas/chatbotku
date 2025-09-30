@@ -1,15 +1,35 @@
-import React from "react";
+"use client";
+
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
 export default function AuthLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <>
-            <div className="min-h-screen flex flex-col justify-center items-center">
-                {children}
-            </div>
-        </>
-    )
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dashboard");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "authenticated") {
+    return <p>Redirecting...</p>;
+  }
+  return (
+    <>
+      <div className="min-h-screen flex flex-col justify-center items-center">
+        {children}
+      </div>
+    </>
+  );
 }

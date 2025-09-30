@@ -15,6 +15,7 @@ const AdministratorSchema = new Schema<IAdministrator>(
       unique: true,
       lowercase: true,
       trim: true,
+      match: [/^\S+@\S+\.\S+$/, "Invalid email"],
     },
     password: {
       type: String,
