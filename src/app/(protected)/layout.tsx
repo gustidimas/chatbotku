@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import Spinner from "../components/Spinner";
 
 export default function ProtectedLayout({
   children,
@@ -19,7 +20,7 @@ export default function ProtectedLayout({
   }, [status, router]);
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (status === "authenticated") {

@@ -1,10 +1,13 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function SignUp() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -15,6 +18,7 @@ export default function SignUp() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage("");
+    setLoading(true);
 
     if (password !== confirmPassword) {
       setMessage("Passwords do not match!");
@@ -41,14 +45,23 @@ export default function SignUp() {
       if (res.ok) {
         setSuccess(true);
         setMessage("Account created. Redirecting...");
+        setPassword("");
+        setConfirmPassword("");
+        setLoading(false);
         setTimeout(() => {
           router.push("/signin");
         }, 2000);
       } else {
         setMessage(data.error || "Failed to create account");
+        setPassword("");
+        setConfirmPassword("");
+        setLoading(false);
       }
     } catch (error) {
       setMessage("Something went wrong. Please try again.");
+      setPassword("");
+      setConfirmPassword("");
+      setLoading(false);
     }
   };
 
@@ -58,31 +71,34 @@ export default function SignUp() {
         <Link href="/">Back</Link>
         <p>SignUp</p>
         <form onSubmit={handleSubmit}>
-          <input
+          <Input
             type="email"
             placeholder="Email"
             className="border"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
             required
           />
-          <input
+          <Input
             type="password"
             placeholder="Password"
             className="border"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
             required
           />
-          <input
+          <Input
             type="password"
             placeholder="Verify Password"
             className="border"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            disabled={loading}
             required
           />
-          <button type="submit">Register</button>
+          <Button type="submit" disabled={loading}>Register</Button>
           {message && (
             <p className={`${success ? "text-green-500" : "text-red-500"}`}>
               {message}

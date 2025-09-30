@@ -5,6 +5,8 @@ import PublicHeader from "../components/PublicHeader";
 import PublicFooter from "../components/PublicFooter";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Spinner from "../components/Spinner";
+import Redirecting from "../components/Redirecting";
 
 export default function PublicLayout({
   children,
@@ -21,11 +23,11 @@ export default function PublicLayout({
   }, [status, router]);
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (status === "authenticated") {
-    return <p>Redirecting...</p>;
+    return <Redirecting />;
   }
 
   return (

@@ -3,6 +3,8 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import Spinner from "../components/Spinner";
+import Redirecting from "../components/Redirecting";
 
 export default function AuthLayout({
   children,
@@ -19,11 +21,11 @@ export default function AuthLayout({
   }, [status, router]);
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   if (status === "authenticated") {
-    return <p>Redirecting...</p>;
+    return <Redirecting />;
   }
   return (
     <>
