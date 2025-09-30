@@ -1,7 +1,7 @@
 import mongoose, { model, models, Schema } from "mongoose";
 
 export interface IOrganization extends mongoose.Document {
-  administrator_id: string;
+  administrator_id: mongoose.Types.ObjectId;
   org_name: string;
   created_at: Date;
   updated_at: Date;
@@ -9,6 +9,11 @@ export interface IOrganization extends mongoose.Document {
 
 const OrganizationSchema = new Schema<IOrganization>(
   {
+    administrator_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Administrator",
+      required: true,
+    },
     org_name: {
       type: String,
       required: [true, "Organization name is required"],
