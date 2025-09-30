@@ -74,7 +74,6 @@ export default function SignUp() {
           <Input
             type="email"
             placeholder="Email"
-            className="border"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
@@ -83,7 +82,6 @@ export default function SignUp() {
           <Input
             type="password"
             placeholder="Password"
-            className="border"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
@@ -92,13 +90,14 @@ export default function SignUp() {
           <Input
             type="password"
             placeholder="Verify Password"
-            className="border"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             disabled={loading}
             required
           />
-          <Button type="submit" disabled={loading}>Register</Button>
+          <Button type="submit" disabled={loading}>
+            Register
+          </Button>
           {message && (
             <p className={`${success ? "text-green-500" : "text-red-500"}`}>
               {message}

@@ -45,7 +45,6 @@ export default function SignIn() {
           <Input
             type="email"
             placeholder="Email"
-            className="border"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
@@ -54,7 +53,6 @@ export default function SignIn() {
           <Input
             type="password"
             placeholder="Password"
-            className="border"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}

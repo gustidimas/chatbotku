@@ -3,6 +3,17 @@ import Administrator from "@/app/models/administrator";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
+export async function GET() {
+  try {
+    await dbConnect();
+
+    const user = await Administrator.findOne({});
+    if (user) {
+      return NextResponse.json({ user });
+    }
+  } catch (error) {}
+}
+
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();

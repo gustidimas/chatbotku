@@ -1,7 +1,9 @@
 ## Sistem Chatbot Berbasis AI
 
 Skripsi - Informatika
+
 Universitas Mulawarman
+
 Penulis - Gusti Dimas Novarossi
 
 ## Konfigurasi .env.local
