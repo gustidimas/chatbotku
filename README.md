@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Sistem Chatbot Berbasis AI
+
+Skripsi - Informatika
+Universitas Mulawarman
+Penulis - Gusti Dimas Novarossi
+
+## Konfigurasi .env.local
+
+Buat file [`.env.local`] pada root proyek, dengan isi berikut:
+```bash
+MONGODB_URI
+NEXTAUTH_SECRET
+NEXTAUTH_URL
+```
+
+## Instalasi
+
+```bash
+npm install
+npm run dev
+```
+
+© 2025. Untuk keperluan akademis.
