@@ -9,8 +9,18 @@ export async function GET() {
     const orgs = await Organization.find();
     if (orgs) {
       return NextResponse.json({ orgs });
+    } else {
+      return NextResponse.json(
+        { message: "Organization not found" },
+        { status: 404 }
+      );
     }
-  } catch (error) {}
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req: Request) {

@@ -12,7 +12,7 @@ export default function AuthButton() {
   if (session) {
     return (
       <div>
-        <p>Welcome, {session.user?.email}</p>
+        <p>Welcome, {session.user?.email} {session.user?.id}</p>
         <button onClick={() => signOut({ callbackUrl: "/" })}>Sign Out</button>
       </div>
     );

@@ -33,7 +33,7 @@ export default function SignUp() {
     console.log("Sending:", email, password);
 
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch("/api/administrator/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
