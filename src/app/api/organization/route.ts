@@ -57,6 +57,18 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (error) {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      (error as { code?: number }).code === 11000
+    ) {
+      return NextResponse.json(
+        { error: "You already have an organization with this name" },
+        { status: 409 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }

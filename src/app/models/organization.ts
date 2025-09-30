@@ -17,12 +17,16 @@ const OrganizationSchema = new Schema<IOrganization>(
     org_name: {
       type: String,
       required: [true, "Organization name is required"],
-      unique: true,
     },
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
+);
+
+OrganizationSchema.index(
+  { org_name: 1, administrator_id: 1 },
+  { unique: true }
 );
 
 const Organization =
