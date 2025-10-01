@@ -30,8 +30,6 @@ export default function SignUp() {
       return;
     }
 
-    console.log("Sending:", email, password);
-
     try {
       const res = await fetch("/api/administrator/register", {
         method: "POST",

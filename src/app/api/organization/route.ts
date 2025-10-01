@@ -6,16 +6,23 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: "Unauthorized: login required" },
+        { status: 401 }
+      );
+    }
+
     await dbConnect();
 
-    const orgs = await Organization.find();
+    const orgs = await Organization.find({
+      administrator_id: session.user.id,
+    }).select("-__v");
+
     if (orgs) {
       return NextResponse.json({ orgs });
-    } else {
-      return NextResponse.json(
-        { message: "Organization not found" },
-        { status: 404 }
-      );
     }
   } catch (error) {
     return NextResponse.json(
