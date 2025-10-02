@@ -62,10 +62,8 @@ export default function OrganizationDetail() {
 
     if (res.ok) {
       const updatedData = await res.json();
-      // ✅ Update state lokal → nama di <h1> langsung berubah!
       setOrg(updatedData.org);
       setOrg_name(updatedData.org.org_name);
-      // Opsional: tetap refresh untuk konsistensi penuh
       router.refresh();
     } else {
       const errorData = await res.json();
@@ -123,7 +121,6 @@ export default function OrganizationDetail() {
         ← Back to Organizations
       </Link>
 
-      {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">{org.org_name}</h1>
         <p className="text-sm text-gray-500">
@@ -131,7 +128,6 @@ export default function OrganizationDetail() {
         </p>
       </div>
 
-      {/* Rename Form */}
       <div className="bg-white border rounded-lg p-6 shadow-sm mb-8">
         <h2 className="text-lg font-semibold mb-4">Organization Name</h2>
         <form onSubmit={handleSubmit}>
@@ -171,18 +167,9 @@ export default function OrganizationDetail() {
           {formError && (
             <p className="mt-2 text-sm text-red-600">{formError}</p>
           )}
-          {org_name.trim() &&
-            org_name.trim() !== org.org_name &&
-            !formError && (
-              <p className="mt-2 text-sm text-green-600">
-                ✅ Will be updated to:{" "}
-                <span className="font-medium">"{org_name.trim()}"</span>
-              </p>
-            )}
         </form>
       </div>
 
-      {/* Organization Details */}
       <div className="bg-white border rounded-lg p-6 shadow-sm">
         <h2 className="text-lg font-semibold mb-4">Organization Details</h2>
         <div className="space-y-3 text-gray-700 text-sm">
