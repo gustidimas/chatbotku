@@ -4,6 +4,9 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import Spinner from "../components/Spinner";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/ui/app-sidebar";
+import DynamicBreadcrumb from "../components/DynamicBreadcrumb";
 
 export default function ProtectedLayout({
   children,
@@ -26,9 +29,16 @@ export default function ProtectedLayout({
   if (status === "authenticated") {
     return (
       <>
-        <div className="min-h-screen flex flex-col justify-center items-center">
-          {children}
-        </div>
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="p-2 flex flex-col w-full">
+            <div className="w-full flex flex-row items-center border-b p-4">
+              <SidebarTrigger />
+              <DynamicBreadcrumb />
+            </div>
+            <div className="p-4">{children}</div>
+          </main>
+        </SidebarProvider>
       </>
     );
   }
